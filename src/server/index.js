@@ -6,11 +6,20 @@ const usersRouter = require("../db/routers/usersRouter");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: [
+    "http://localhost:4000",
+    "http://localhost:4001",
+    "https://nacho-losada-front-final-project-202204-bcn.netlify.app/",
+    "https://nacho-losada-front-final-project-202204-bcn.netlify.app",
+  ],
+};
+
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/users", usersRouter);
+app.use("/user", usersRouter);
 
 app.use(notFoundError);
 app.use(generalError);
