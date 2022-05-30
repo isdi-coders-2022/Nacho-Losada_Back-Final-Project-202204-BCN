@@ -1,5 +1,5 @@
 require("dotenv").config();
-const debug = require("debug")("social:errors");
+const debug = require("debug")("lolingo:errors");
 const chalk = require("chalk");
 
 const notFoundError = (req, res) => {
