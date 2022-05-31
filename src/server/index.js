@@ -9,10 +9,13 @@ const app = express();
 
 const corsOptions = {
   origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
     "http://localhost:4000",
     "http://localhost:4001",
     "https://nacho-losada-front-final-project-202204-bcn.netlify.app/",
     "https://nacho-losada-front-final-project-202204-bcn.netlify.app",
+    "https://nacho-losada-back-final-project-202204.onrender.com/user/register",
   ],
 };
 
