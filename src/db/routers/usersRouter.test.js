@@ -18,7 +18,7 @@ afterAll(async () => {
 
 describe("Given a POST /user/register endpoint", () => {
   describe("When it receives a request with a new user", () => {
-    test("Then it should call the res json method with the username ", async () => {
+    test("Then it should return the username insde the body with a 201 statuscode ", async () => {
       const newUser = {
         name: "Morgan",
         username: "morganfreeman",
