@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const { default: helmet } = require("helmet");
 const { notFoundError, generalError } = require("./middlewares/errors");
 const usersRouter = require("../db/routers/usersRouter");
 
@@ -17,6 +18,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(morgan("dev"));
+app.use(helmet());
 app.use(express.json());
 
 app.use("/user", usersRouter);
