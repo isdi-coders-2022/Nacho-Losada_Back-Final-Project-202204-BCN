@@ -30,8 +30,9 @@ describe("Given a POST /user/register endpoint", () => {
         .post("/user/register")
         .send(newUser)
         .expect(201);
+      const newUsername = { username: newUser.username };
 
-      expect(body).toBe(newUser.username);
+      expect(body).toStrictEqual(newUsername);
     });
   });
 });
