@@ -1,6 +1,7 @@
 const debug = require("debug")("lolingo:userControllers");
 const chalk = require("chalk");
 const bcrypt = require("bcrypt");
+const jsonwebtoken = require("jsonwebtoken");
 const User = require("../../../db/models/User");
 
 const registerUser = async (req, res, next) => {
@@ -24,8 +25,41 @@ const registerUser = async (req, res, next) => {
 
     debug(chalk.green("New user registered"));
 
-    res.status(201).json(newUser.username);
+    res.status(201).json({ username: newUser.username });
   }
 };
 
-module.exports = { registerUser };
+const loginUser = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  const user = await User.findOne({ username });
+
+  if (!user) {
+    const error = new Error("Username not found");
+    error.statusCode = 403;
+    error.customMessage = "Username or password is wrong";
+
+    next(error);
+  } else {
+    const userData = {
+      name: user.name,
+      username: user.username,
+      id: user.id,
+    };
+    const rightPassword = await bcrypt.compare(password, user.password);
+
+    if (!rightPassword) {
+      const error = new Error("Incorrect password");
+      error.statusCode = 403;
+      error.customMessage = "Username or password is wrong";
+
+      next(error);
+    } else {
+      const token = jsonwebtoken.sign(userData, process.env.JWT_SECRET);
+
+      res.status(200).json({ token });
+    }
+  }
+};
+
+module.exports = { registerUser, loginUser };
