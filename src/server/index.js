@@ -15,7 +15,6 @@ const corsOptions = {
     "http://localhost:4001",
     "https://nacho-losada-front-final-project-202204-bcn.netlify.app/",
     "https://nacho-losada-front-final-project-202204-bcn.netlify.app",
-    "https://nacho-losada-back-final-project-202204.onrender.com/user/register",
   ],
 };
 
