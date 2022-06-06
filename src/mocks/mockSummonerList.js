@@ -4,7 +4,7 @@ const mockSummonerList = {
       summonerName: "Mike Old",
       creatorName: "Maicol",
       rankImage:
-        "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
+        "https://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
       rank: "Wood III",
       firstRole: "/images/positions/Bot.png",
       firstRoleChamps: ["Zac", "Annie", "Graves"],
@@ -17,7 +17,7 @@ const mockSummonerList = {
       summonerName: "The Seigol",
       creatorName: "Albert",
       rankImage:
-        "http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
+        "https://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
       rank: "Wood III",
       firstRole: "/images/positions/Bot.png",
       firstRoleChamps: ["Ashe", "Leona", "Brand"],
