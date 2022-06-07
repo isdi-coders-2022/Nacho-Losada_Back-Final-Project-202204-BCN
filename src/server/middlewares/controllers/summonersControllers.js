@@ -16,4 +16,23 @@ const loadSummoners = async (req, res, next) => {
   }
 };
 
-module.exports = { loadSummoners };
+const deleteSummoner = async (req, res, next) => {
+  const { id } = req.params;
+
+  try {
+    const summoner = await Summoner.findByIdAndDelete(id);
+
+    res.status(200).json(summoner.summonerName);
+    if (summoner) {
+      debug(chalk.greenBright(`${summoner.summonerName} has been deleted`));
+    }
+  } catch (error) {
+    error.statusCode = 404;
+    error.customMessage = "Could not find this summoner";
+
+    debug(chalk.greenBright(`Could not find this summoner`));
+    next(error);
+  }
+};
+
+module.exports = { loadSummoners, deleteSummoner };
