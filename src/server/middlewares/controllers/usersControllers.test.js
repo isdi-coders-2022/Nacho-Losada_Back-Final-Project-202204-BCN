@@ -1,4 +1,4 @@
-const jsonwebtoken = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../../../db/models/User");
 const { registerUser, loginUser } = require("./usersControllers");
@@ -61,7 +61,7 @@ describe("Given a loginUser function", () => {
       User.findOne = jest.fn().mockResolvedValue(req.body);
       bcrypt.compare = jest.fn().mockResolvedValue(true);
 
-      const token = jsonwebtoken.sign();
+      const token = jwt.sign();
       await loginUser(req, res);
       expect(res.json).toHaveBeenCalledWith({ token });
     });
