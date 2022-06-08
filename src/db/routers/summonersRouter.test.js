@@ -2,7 +2,7 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 const { mongoose } = require("mongoose");
 const request = require("supertest");
 const connectDB = require("..");
-const mockSummonerList = require("../../mocks/mockSummonerList");
+const { mockSummonerList } = require("../../mocks/mocks");
 const app = require("../../server");
 const Summoner = require("../models/Summoner");
 
@@ -24,7 +24,7 @@ afterAll(async () => {
 
 describe("Given a GET /summoners endpoint", () => {
   describe("When it receives a request", () => {
-    test("Then it should respond with a 200 code and the list of summoners", async () => {
+    test.only("Then it should respond with a 200 code and the list of summoners", async () => {
       const {
         body: { summoners },
       } = await request(app).get("/summoners").expect(200);

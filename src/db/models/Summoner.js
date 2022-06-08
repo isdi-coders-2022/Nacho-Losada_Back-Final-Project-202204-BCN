@@ -4,7 +4,7 @@ const SummonerSchema = new Schema({
   summonerName: { type: String, required: true, unique: true },
   creatorName: { type: String, required: true },
   rankImage: { type: String, required: true },
-  rank: String,
+  rank: { type: String, required: true },
   firstRole: { type: String, required: true },
   firstRoleChamps: { type: [String], required: true },
   secondRole: { type: String, required: true },

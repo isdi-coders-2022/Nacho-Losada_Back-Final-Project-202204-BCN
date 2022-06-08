@@ -1,12 +1,15 @@
 const express = require("express");
+const auth = require("../../server/middlewares/auth");
 const {
   loadSummoners,
   deleteSummoner,
+  createSummoner,
 } = require("../../server/middlewares/controllers/summonersControllers");
 
 const summonersRouter = express.Router();
 
 summonersRouter.get("", loadSummoners);
-summonersRouter.delete("/:id", deleteSummoner);
+summonersRouter.delete("/:id", auth, deleteSummoner);
+summonersRouter.post("", auth, createSummoner);
 
 module.exports = summonersRouter;
