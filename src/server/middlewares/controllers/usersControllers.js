@@ -1,7 +1,7 @@
 const debug = require("debug")("lolingo:userControllers");
 const chalk = require("chalk");
 const bcrypt = require("bcrypt");
-const jsonwebtoken = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const User = require("../../../db/models/User");
 
 const registerUser = async (req, res, next) => {
@@ -55,7 +55,7 @@ const loginUser = async (req, res, next) => {
 
       next(error);
     } else {
-      const token = jsonwebtoken.sign(userData, process.env.JWT_SECRET);
+      const token = jwt.sign(userData, process.env.JWT_SECRET);
 
       res.status(200).json({ token });
     }

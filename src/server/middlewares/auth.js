@@ -16,6 +16,7 @@ const auth = (req, res, next) => {
   } catch (error) {
     error.code = 401;
     error.message = "Invalid token";
+    error.customMessage = "Invalid token";
 
     next(error);
   }
