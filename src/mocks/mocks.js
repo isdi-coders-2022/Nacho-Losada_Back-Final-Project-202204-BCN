@@ -5,7 +5,8 @@ const mockSummonerList = {
       creatorName: "Maicol",
       rankImage:
         "https://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
-      rank: "Wood III",
+      rank: "Wood",
+      division: "III",
       firstRole: "/images/positions/Bot.png",
       firstRoleChamps: ["Zac", "Annie", "Graves"],
       secondRole: "/images/positions/Top.png",
@@ -17,7 +18,8 @@ const mockSummonerList = {
       creatorName: "Albert",
       rankImage:
         "https://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
-      rank: "Wood III",
+      rank: "Wood",
+      division: "III",
       firstRole: "/images/positions/Bot.png",
       firstRoleChamps: ["Ashe", "Leona", "Brand"],
       secondRole: "/images/positions/Top.png",
@@ -32,7 +34,8 @@ const mockSummoner = {
   creatorName: "Testeador",
   rankImage:
     "https://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png",
-  rank: "Wood III",
+  rank: "Wood",
+  division: "III",
   firstRole: "/images/positions/Bot.png",
   firstRoleChamps: ["Zac", "Annie", "Graves"],
   secondRole: "/images/positions/Top.png",
