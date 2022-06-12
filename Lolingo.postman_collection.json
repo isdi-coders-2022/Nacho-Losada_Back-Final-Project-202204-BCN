@@ -61,16 +61,78 @@
       "request": {
         "method": "DELETE",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
         "url": {
-          "raw": "{{origin}}/summoners/:id",
-          "host": ["{{origin}}"],
-          "path": ["summoners", ":id"],
-          "variable": [
+          "raw": "{{origin}}summoners/62a0abfa35dac7d2bb479adc",
+          "host": ["{{origin}}summoners"],
+          "path": ["62a0abfa35dac7d2bb479adc"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/summoners",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
             {
-              "key": "id",
-              "value": null
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmFjaG8iLCJ1c2VybmFtZSI6Im5hY2hvIiwiaWQiOiI2Mjk1MGNmNWYzY2JjMmNlMTlhYjY0OWQiLCJpYXQiOjE2NTQ2MDA5NjB9.LJ4G-tscvh6M_NorK0eabuW-bDeHyKaWLg4dWzna-zs",
+              "type": "string"
             }
           ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"summonerName\": \"Ronaldo\", \r\n\"creatorName\": \"Maicol\", \r\n\"rankImage\": \"http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png\",\r\n\"rank\": \"Wood III\",\r\n\"firstRole\": \"/images/positions/Bot.png\", \r\n\"firstRoleChamps\": [\"Zac\", \"Annie\", \"Graves\"], \r\n\"secondRole\": \"/images/positions/Top.png\", \r\n\"secondRoleChamps\": [\"Zac\", \"Annie\", \"Graves\"], \r\n\"description\": \"Lolen Ipsum\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}summoners/",
+          "host": ["{{origin}}summoners"],
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "summoners/edit/:id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmFjaG8iLCJ1c2VybmFtZSI6Im5hY2hvIiwiaWQiOiI2MmE1ZDg0M2I3ZWZiZDY5NWUxMzU1NTAiLCJpYXQiOjE2NTUwNTcwNjh9.pijod75OB6GQnXmZsJ22yYw41GASr618FntN7eZchDY",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"summonerName\": \"Ronaldo\", \r\n\"creatorName\": \"Maicol\", \r\n\"rankImage\": \"http://ddragon.leagueoflegends.com/cdn/12.10.1/img/champion/Aatrox.png\",\r\n\"rank\": \"Wood III\",\r\n\"firstRole\": \"/images/positions/Bot.png\", \r\n\"firstRoleChamps\": [\"Zac\", \"Annie\", \"Graves\"], \r\n\"secondRole\": \"/images/positions/Top.png\", \r\n\"secondRoleChamps\": [\"Zac\", \"Annie\", \"Graves\"], \r\n\"description\": \"Lolen Ipsum\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}summoners/edit/62a62e9bbb8449186ff6cbb2",
+          "host": ["{{origin}}summoners"],
+          "path": ["edit", "62a62e9bbb8449186ff6cbb2"]
         }
       },
       "response": []
@@ -95,7 +157,7 @@
   "variable": [
     {
       "key": "origin",
-      "value": "http://localhost:3000/",
+      "value": "http://localhost:4000/",
       "type": "string"
     }
   ]

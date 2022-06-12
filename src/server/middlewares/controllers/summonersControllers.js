@@ -65,4 +65,52 @@ const createSummoner = async (req, res, next) => {
   }
 };
 
-module.exports = { loadSummoners, deleteSummoner, createSummoner };
+const editSummoner = async (req, res, next) => {
+  const { id } = req.params;
+  const {
+    summonerName,
+    rank,
+    division,
+    firstRole,
+    firstRoleChamps,
+    secondRole,
+    secondRoleChamps,
+    description,
+  } = req.body;
+
+  try {
+    const { creatorName } = await Summoner.findById(id);
+
+    const editedSummoner = {
+      summonerName,
+      creatorName,
+      rank,
+      division,
+      firstRole,
+      firstRoleChamps,
+      secondRole,
+      secondRoleChamps,
+      description,
+    };
+
+    await Summoner.findByIdAndUpdate(id, editedSummoner);
+    const newSummoner = await Summoner.findById(id);
+
+    debug(chalk.green("Summoner has been edited"));
+
+    res.status(200).json(newSummoner);
+  } catch (error) {
+    debug(chalk.red("Error editing the Summoner"));
+
+    error.customMessage = "Could not edit this Summoner";
+    error.statusCode = 400;
+    next(error);
+  }
+};
+
+module.exports = {
+  loadSummoners,
+  deleteSummoner,
+  createSummoner,
+  editSummoner,
+};
