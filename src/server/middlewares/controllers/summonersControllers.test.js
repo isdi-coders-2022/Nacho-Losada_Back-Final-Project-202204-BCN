@@ -1,6 +1,10 @@
 const Summoner = require("../../../db/models/Summoner");
 const { mockSummonerList, mockSummoner } = require("../../../mocks/mocks");
-const { loadSummoners, deleteSummoner } = require("./summonersControllers");
+const {
+  loadSummoners,
+  deleteSummoner,
+  createSummoner,
+} = require("./summonersControllers");
 
 const res = {
   status: jest.fn().mockReturnThis(),
@@ -12,7 +16,7 @@ describe("Given a loadSummoners funcion", () => {
   const req = {};
 
   describe("When it's invoked with a request", () => {
-    test("Then it should call the res json methon with the list of summoners", async () => {
+    test("Then it should call the res json method with the list of summoners", async () => {
       Summoner.find = jest.fn().mockResolvedValue(mockSummonerList);
 
       const expectedSummoners = await Summoner.find();
@@ -51,7 +55,7 @@ describe("Given a deleteSummoner function", () => {
   });
 
   describe("When it's invoked with a request with a non existing id", () => {
-    test.only("Then it should call the next function", async () => {
+    test("Then it should call the next function", async () => {
       Summoner.findByIdAndDelete = jest.fn().mockRejectedValue();
       const errorMessage = "Could not find this summoner";
       const error = new Error(errorMessage);
@@ -59,6 +63,45 @@ describe("Given a deleteSummoner function", () => {
       await deleteSummoner(req, res, next);
 
       expect(next).toHaveBeenCalledWith(error);
+    });
+  });
+});
+
+describe("Given a createSummoner function", () => {
+  const req = {
+    body: { mockSummoner },
+  };
+
+  describe("When invoked with a request with a new summoner", () => {
+    test("Then it should call the res status method with a 201", async () => {
+      Summoner.findOne = jest.fn().mockResolvedValue(null);
+      Summoner.create = jest.fn();
+      const expectedStatus = 201;
+
+      await createSummoner(req, res, next);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+    });
+  });
+
+  describe("When invoked with a request with a new summoner but an axios error happens", () => {
+    test("Then it should call the next function", async () => {
+      Summoner.findOne = jest.fn().mockResolvedValue(null);
+      Summoner.create = jest.fn().mockRejectedValue(new Error());
+
+      await createSummoner(req, res, next);
+
+      expect(next).toHaveBeenCalled();
+    });
+  });
+
+  describe("When invoked with a request with an existant summoner name ", () => {
+    test("Then it should call the next function", async () => {
+      Summoner.findOne = jest.fn().mockResolvedValue(mockSummoner.summonerName);
+
+      await createSummoner(req, res, next);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 });
