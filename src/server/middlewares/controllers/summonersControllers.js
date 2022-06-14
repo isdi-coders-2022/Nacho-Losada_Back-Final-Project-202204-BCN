@@ -22,11 +22,8 @@ const deleteSummoner = async (req, res, next) => {
   try {
     const { summonerName } = await Summoner.findByIdAndDelete(id);
 
-    if (summonerName) {
-      debug(chalk.greenBright(`${summonerName} has been deleted`));
-
-      res.status(202).json(summonerName);
-    }
+    debug(chalk.greenBright(`${summonerName} has been deleted`));
+    res.status(202).json(summonerName);
   } catch {
     const error = new Error("Could not find this summoner");
     error.statusCode = 404;

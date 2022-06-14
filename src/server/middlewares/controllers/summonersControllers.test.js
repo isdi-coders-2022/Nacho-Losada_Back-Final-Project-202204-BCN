@@ -4,6 +4,7 @@ const {
   loadSummoners,
   deleteSummoner,
   createSummoner,
+  editSummoner,
 } = require("./summonersControllers");
 
 const res = {
@@ -100,6 +101,36 @@ describe("Given a createSummoner function", () => {
       Summoner.findOne = jest.fn().mockResolvedValue(mockSummoner.summonerName);
 
       await createSummoner(req, res, next);
+
+      expect(next).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given an editSummoner function", () => {
+  const req = {
+    params: { id: "1234" },
+    body: { mockSummoner },
+  };
+
+  describe("When invoked with a request with an existant id and the summoner", () => {
+    test("Then it should call the res status method with a 200", async () => {
+      Summoner.findById = jest.fn().mockReturnValue(mockSummoner);
+      Summoner.findByIdAndUpdate = jest.fn();
+
+      editSummoner(req, res, next);
+      const expectedValue = 200;
+
+      expect(res.status).toHaveBeenCalledWith(expectedValue);
+    });
+  });
+
+  describe("When invoked with a request with an invalid id", () => {
+    test("Then it should call the next functiont", async () => {
+      Summoner.findById = jest.fn().mockRejectedValue("");
+      Summoner.findByIdAndUpdate = jest.fn();
+
+      editSummoner(req, res, next);
 
       expect(next).toHaveBeenCalled();
     });
