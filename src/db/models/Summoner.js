@@ -7,8 +7,8 @@ const SummonerSchema = new Schema({
   division: { type: String, required: true },
   firstRole: { type: String, required: true },
   firstRoleChamps: { type: [String], required: true },
-  secondRole: { type: String, required: true },
-  secondRoleChamps: { type: [String], required: true },
+  secondRole: { type: String },
+  secondRoleChamps: { type: [String] },
   description: { type: String, required: true },
 });
 
