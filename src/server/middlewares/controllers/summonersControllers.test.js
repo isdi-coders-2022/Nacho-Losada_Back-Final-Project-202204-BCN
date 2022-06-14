@@ -143,6 +143,7 @@ describe("Given a geteOwnSummoners function", () => {
     test("Then it should call the res status method with a 200", () => {
       const req = {
         body: { name: "Maicol" },
+        userId: { name: "Maicol" },
       };
       const expectedStatusCode = 200;
       Summoner.find = jest.fn().mockResolvedValue(mockSummonerList);
@@ -157,6 +158,7 @@ describe("Given a geteOwnSummoners function", () => {
     test("Then it should call the next function", () => {
       const req = {
         body: {},
+        userId: { name: "Maicol" },
       };
       Summoner.find = jest.fn().mockRejectedValue(new Error());
 

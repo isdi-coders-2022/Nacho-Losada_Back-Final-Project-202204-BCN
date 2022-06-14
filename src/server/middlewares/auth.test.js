@@ -8,20 +8,20 @@ describe("Given an auth function", () => {
         authorization: `Bearer grijandemor`,
       },
     };
-    const mockId = "12345";
+    const mockedVerify = { id: "12345" };
     const next = jest.fn();
-    jwt.verify = jest.fn().mockReturnValue({ id: mockId });
+    jwt.verify = jest.fn().mockReturnValue(mockedVerify);
 
     test("Then it should call the next function without arguments", () => {
       auth(req, null, next);
 
       expect(next).toHaveBeenCalledWith();
     });
-    test("Then it should add the 'userId' property with the 'id' to the request", () => {
+    test("Then it should add the 'userId' property with an 'id' property to the request", () => {
       auth(req, null, next);
 
       expect(req).toHaveProperty("userId");
-      expect(req.userId).toBe(mockId);
+      expect(req.userId).toBe(mockedVerify);
     });
   });
 

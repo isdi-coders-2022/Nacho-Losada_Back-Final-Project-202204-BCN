@@ -106,7 +106,7 @@ const editSummoner = async (req, res, next) => {
 };
 
 const getOwnSummoners = async (req, res, next) => {
-  const { name } = req.body;
+  const { name } = req.userId;
 
   try {
     const ownSummoners = await Summoner.find({ creatorName: name });
