@@ -106,7 +106,7 @@
       "response": []
     },
     {
-      "name": "summoners/edit/:id",
+      "name": "/summoners/edit/:id",
       "request": {
         "auth": {
           "type": "bearer",
@@ -133,6 +133,31 @@
           "raw": "{{origin}}summoners/edit/62a62e9bbb8449186ff6cbb2",
           "host": ["{{origin}}summoners"],
           "path": ["edit", "62a62e9bbb8449186ff6cbb2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/user/my-summoners",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"Abraham\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{origin}}user/my-summoners",
+          "host": ["{{origin}}user"],
+          "path": ["my-summoners"]
         }
       },
       "response": []

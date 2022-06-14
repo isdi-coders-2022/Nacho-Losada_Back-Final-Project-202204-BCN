@@ -5,6 +5,7 @@ const {
   deleteSummoner,
   createSummoner,
   editSummoner,
+  getOwnSummoners,
 } = require("./summonersControllers");
 
 const res = {
@@ -131,6 +132,35 @@ describe("Given an editSummoner function", () => {
       Summoner.findByIdAndUpdate = jest.fn();
 
       editSummoner(req, res, next);
+
+      expect(next).toHaveBeenCalled();
+    });
+  });
+});
+
+describe("Given a geteOwnSummoners function", () => {
+  describe("When invoked with a request with the user's name", () => {
+    test("Then it should call the res status method with a 200", () => {
+      const req = {
+        body: { name: "Maicol" },
+      };
+      const expectedStatusCode = 200;
+      Summoner.find = jest.fn().mockResolvedValue(mockSummonerList);
+
+      getOwnSummoners(req, res, next);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
+    });
+  });
+
+  describe("When invoked with a request without the user's name", () => {
+    test("Then it should call the next function", () => {
+      const req = {
+        body: {},
+      };
+      Summoner.find = jest.fn().mockRejectedValue(new Error());
+
+      getOwnSummoners(req, res, next);
 
       expect(next).toHaveBeenCalled();
     });

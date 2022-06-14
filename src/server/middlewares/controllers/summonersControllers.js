@@ -105,9 +105,27 @@ const editSummoner = async (req, res, next) => {
   }
 };
 
+const getOwnSummoners = async (req, res, next) => {
+  const { name } = req.body;
+
+  try {
+    const ownSummoners = await Summoner.find({ creatorName: name });
+
+    debug(chalk.greenBright("Summoners loaded"));
+
+    res.status(200).json({ ownSummoners });
+  } catch (error) {
+    debug(chalk.red("Cannot load summoners"));
+    error.customMessage = "Cannot load summoners";
+
+    next(error);
+  }
+};
+
 module.exports = {
   loadSummoners,
   deleteSummoner,
   createSummoner,
   editSummoner,
+  getOwnSummoners,
 };
